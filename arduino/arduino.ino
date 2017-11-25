@@ -1,4 +1,5 @@
 //still try to clean it up :(
+//hard to understand
 //change extension into .ino from .c
 int in2 = 8;
 int in1 = 9;
@@ -96,12 +97,10 @@ void loop() {
 			fa();
 			break;
 		case 'Y':
-
 			digitalWrite(in2, HIGH);
 			digitalWrite(pin10, HIGH);
 			fa();
 			delay(3800);  //?? whats that?
-
 			digitalWrite(in2, LOW);
 			digitalWrite(pin10, LOW);
 			fa();
@@ -118,14 +117,14 @@ void loop() {
 		case 'A':
 			fn();
 			break;
-			case 'S':
+		case 'S':
 			fs();
 			break;
-			default: 
+	        default: 
 			delay(10);
 			break;
 	}
-	val = "0";
+	//val = "0";  //is it needed?
 }
 
 void blink01(int pinHigh, int pinLow, int timeDelay)
@@ -150,6 +149,13 @@ void three_pin_low(int pin1, int pin2, int pin3)
   digitalWrite(pin3, LOW);
 }
 
+void three_pin_high(int pin1, int pin2, int pin3)
+{
+  digitalWrite(pin1, HIGH);
+  digitalWrite(pin2, HIGH); 
+  digitalWrite(pin3, HIGH);
+}
+
 
 void fk()
 {
@@ -166,17 +172,12 @@ void fk()
   blink01(ledPin3, ledPin2, 225);
   blink01(ledPin4, ledPin3, 225);
   blink01(ledPin5, ledPin4, 215);
-
-
-	digitalWrite(ledPin5, LOW);
-	digitalWrite(ledPin1, HIGH);
-	digitalWrite(ledPin2, HIGH); 
-
 	digitalWrite(ledPin1, LOW);
 	digitalWrite(ledPin2, LOW);
+	digitalWrite(ledPin3, HIGH);
 	digitalWrite(ledPin4, LOW);
 	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin3, HIGH);
+
 };
 
 void fl()
@@ -194,18 +195,11 @@ void fl()
   blink01(ledPin3, ledPin2, 215);
   blink01(ledPin4, ledPin3, 115);
   blink01(ledPin5, ledPin4, 115);
-
-
-	digitalWrite(ledPin5, LOW);
-	digitalWrite(ledPin1, HIGH);
-	digitalWrite(ledPin2, HIGH);
-
-
 	digitalWrite(ledPin1, LOW);
-	digitalWrite(ledPin2, HIGH);
+	digitalWrite(ledPin2, LOW);
+	digitalWrite(ledPin3, HIGH);
 	digitalWrite(ledPin4, LOW);
 	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin3, HIGH);
 };
 
 void fs()
@@ -214,29 +208,19 @@ void fs()
 	digitalWrite(in1, HIGH);
 	// set speed to 200 out of possible range 0~255
 	// turn on motor B
-	delay(25000);
+	delay(25000);    //wait for 25 seconds!!??
 	// now change motor directions
 	digitalWrite(in1, LOW);
 	digitalWrite(ledPin1, LOW);
 	delay(5);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(215); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
-	digitalWrite(ledPin5, LOW);
-	digitalWrite(ledPin1, HIGH);
-	digitalWrite(ledPin2, HIGH);
-
+      blink01(ledPin3, ledPin2, 215);
+      blink01(ledPin4, ledPin3, 115);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin1, LOW);
-	digitalWrite(ledPin2, HIGH);
+	digitalWrite(ledPin2, LOW);
+	digitalWrite(ledPin3, HIGH);
 	digitalWrite(ledPin4, LOW);
 	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin3, HIGH);
 };
 
   
@@ -248,35 +232,24 @@ void fn()
 	// now change motor directions
 	digitalWrite(in1, LOW);
 	digitalWrite(in2, LOW);
-
 	digitalWrite(ledPin1, LOW);
 	delay(5);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(125); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(315);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(315);
-	digitalWrite(ledPin5, LOW);
-	digitalWrite(ledPin1, HIGH);
-	digitalWrite(ledPin2, HIGH);
-
+      blink01(ledPin3, ledPin2, 125);
+      blink01(ledPin4, ledPin3, 315);
+      blink01(ledPin5, ledPin4, 315);
 	digitalWrite(ledPin1, LOW);
-	digitalWrite(ledPin2, HIGH);
+	digitalWrite(ledPin2, LOW);
+	digitalWrite(ledPin3, HIGH);
 	digitalWrite(ledPin4, LOW);
 	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin3, HIGH);
 };
 
 
 void fp()
 {
-digitalWrite(pin10, HIGH);
-delay(2500);
-digitalWrite(pin10, LOW);
+  digitalWrite(pin10, HIGH);
+  delay(2500);
+  digitalWrite(pin10, LOW);
 };
 
 
@@ -285,9 +258,9 @@ void fz()
 {
 	digitalWrite(ledPin1, LOW);
 	digitalWrite(ledPin2, LOW);
+	digitalWrite(ledPin3, LOW);
 	digitalWrite(ledPin4, LOW);
 	digitalWrite(ledPin5, LOW);
-	digitalWrite(ledPin3, LOW);
 };
 
 
@@ -295,19 +268,11 @@ void ff()
 {
 	digitalWrite(ledPin2, HIGH);
 	digitalWrite(ledPin0, HIGH);
-
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(in1, HIGH);
-	digitalWrite(in2, HIGH);
-	digitalWrite(pin10, HIGH);
+      four_pin_high(ledPin4, in1, in2, pin10);
 	fa();
 	delay(1000);
-	digitalWrite(in1, LOW);
-	digitalWrite(in2, LOW);
-	digitalWrite(pin10, LOW);
-	digitalWrite(ledPin2, HIGH);
-	digitalWrite(ledPin1, HIGH);
-	digitalWrite(ledPin12, HIGH);
+      three_pin_low(in1, in2, pin10);
+      three_pin_high(ledPin2, ledPin1, ledPin12);
 };
 
 void fg()
@@ -316,8 +281,6 @@ void fg()
 	digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin12, HIGH);   
 	delay(100);
-	//digitalWrite(ledPin2, LOW);
-	//digitalWrite(ledPin1, LOW);
 };
   
 void fh()
@@ -333,58 +296,34 @@ void fh()
 
   void fj()
 {
-	//digitalWrite(ledPin5, HIGH);
 	digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin2, HIGH);
 	delay(125);
 	digitalWrite(ledPin1, LOW);
 	delay(5);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(115); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
+      blink01(ledPin3, ledPin2, 115);
+      blink01(ledPin4, ledPin3, 115);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin5, LOW);
 	digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin2, HIGH);
 	delay(115);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(15);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 15);
 	digitalWrite(ledPin5, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
-
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin4, LOW);
 	delay(115);
 	digitalWrite(ledPin5, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(125); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
+      blink01(ledPin3, ledPin2, 125);
+      blink01(ledPin4, ledPin3, 115);
 	digitalWrite(ledPin5, HIGH);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
@@ -398,52 +337,29 @@ void fh()
 	delay(125);
 	digitalWrite(ledPin1, LOW);
 	delay(5);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(115); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
+      blink01(ledPin3, ledPin2, 115);
+      blink01(ledPin4, ledPin3, 115);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin5, LOW);
 	digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin2, HIGH);
 	delay(115);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(15);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 15);
 	digitalWrite(ledPin5, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
-
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 115); 
 	digitalWrite(ledPin4, LOW);
 	delay(115);
 	digitalWrite(ledPin5, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(125); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
+      blink01(ledPin3, ledPin2, 125);
+      blink01(ledPin4, ledPin3, 115);
 	digitalWrite(ledPin5, HIGH);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
@@ -457,52 +373,30 @@ void fh()
 	delay(125);
 	digitalWrite(ledPin1, LOW);
 	delay(5);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(115); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
+      blink01(ledPin3, ledPin2, 115);
+      blink01(ledPin4, ledPin3, 115);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin5, LOW);
 	digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin2, HIGH);
 	delay(115);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(15);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 15);
 	digitalWrite(ledPin5, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin4, LOW);
 	delay(115);
+	digitalWrite(ledPin5, LOW);
+	delay(115);
+      blink01(ledPin3, ledPin2, 125);
+      blink01(ledPin4, ledPin3, 115);
 
-	digitalWrite(ledPin4, LOW);
-	delay(115);
-	digitalWrite(ledPin5, LOW);
-	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(125); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
 	digitalWrite(ledPin5, HIGH);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
@@ -516,52 +410,30 @@ void fh()
 	delay(125);
 	digitalWrite(ledPin1, LOW);
 	delay(5);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(115); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
+      blink01(ledPin3, ledPin2, 115);
+      blink01(ledPin4, ledPin3, 115);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin5, LOW);
 	digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin2, HIGH);
 	delay(115);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(15);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 15);
 	digitalWrite(ledPin5, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin4, LOW);
 	delay(115);
+	digitalWrite(ledPin5, LOW);
+	delay(115);
+      blink01(ledPin3, ledPin2, 125);
+      blink01(ledPin4, ledPin3, 115);
 
-	digitalWrite(ledPin4, LOW);
-	delay(115);
-	digitalWrite(ledPin5, LOW);
-	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(125); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
 	digitalWrite(ledPin5, HIGH);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
@@ -570,49 +442,33 @@ void fh()
 	delay(115);
 	digitalWrite(ledPin3, LOW);
 	digitalWrite(ledPin5, LOW);
+};
 
-	};
-	void fa()
-	{digitalWrite(ledPin1, HIGH);
+void fa()
+{
+        digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin2, HIGH);
 	delay(15);
 	digitalWrite(ledPin1, LOW);
 	delay(5);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(115); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(215);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(15);
+      blink01(ledPin3, ledPin2, 115);
+      blink01(ledPin4, ledPin3, 215);
+      blink01(ledPin5, ledPin4, 15);
+
 	digitalWrite(ledPin5, LOW);
 	digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin2, HIGH);
 	delay(215);
 	digitalWrite(ledPin1, LOW);
 	delay(215);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(151);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 151);
 	digitalWrite(ledPin5, LOW);
 	delay(215);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(215);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(15);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 215);
+      blink01(ledPin5, ledPin4, 15);
 	digitalWrite(ledPin5, LOW);
 	digitalWrite(ledPin3, HIGH);
 	digitalWrite(ledPin2, HIGH);
@@ -625,52 +481,29 @@ void fx()
 	delay(125);
 	digitalWrite(ledPin1, LOW);
 	delay(5);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(115); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
+      blink01(ledPin3, ledPin2, 115);
+      blink01(ledPin4, ledPin3, 115);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin5, LOW);
 	digitalWrite(ledPin1, HIGH);
 	digitalWrite(ledPin2, HIGH);
 	delay(115);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(15);
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 15);
 	digitalWrite(ledPin5, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(15); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(15);
-	digitalWrite(ledPin5, HIGH);
-	digitalWrite(ledPin4, LOW);
-	delay(115);
-
+      blink01(ledPin3, ledPin2, 15);
+      blink01(ledPin4, ledPin3, 15);
+      blink01(ledPin5, ledPin4, 115);
 	digitalWrite(ledPin4, LOW);
 	delay(115);
 	digitalWrite(ledPin5, LOW);
 	delay(115);
-	digitalWrite(ledPin3, HIGH);
-	digitalWrite(ledPin2, LOW);
-	delay(125); 
-	digitalWrite(ledPin4, HIGH);
-	digitalWrite(ledPin3, LOW);
-	delay(115);
+      blink01(ledPin3, ledPin2, 125);
+      blink01(ledPin4, ledPin3, 115);
 	digitalWrite(ledPin5, HIGH);
 	digitalWrite(ledPin1, LOW);
 	delay(115);
