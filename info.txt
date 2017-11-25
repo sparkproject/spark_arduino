@@ -1,0 +1,16 @@
+This file contain useful informations:
+
+PWM-pins: 3,5,6, 9,10,11
+PWM-out-range: 0-255
+
+
+
+
+
+
+
+
+
+
+
+put something here...
